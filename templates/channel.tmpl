@@ -1,0 +1,130 @@
+<h1>Create / Edit Merchant Channel</h1>
+<form class="form-horizontal" id="channelForm">
+<fieldset>
+
+<!-- Form Name -->
+<legend></legend>
+
+<input type="hidden" id="code" name="code" value="{{ .Code }}"/>
+<input type="hidden" id="createTimestamp" name="createTimestamp" value="{{ .CreateTimestamp }}"/>
+<input type="hidden" id="active" name="active" value="{{ .Active }}"/>
+
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="name">Name</label>  
+  <div class="col-md-6">
+  <input id="name" name="name" value="{{ .Name }}" class="form-control input-md" required="" type="text">
+  <span class="help-block">Channel Name</span>  
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="type">Type</label>
+  <div class="col-md-6">
+    <select id="type" name="type" value="{{ .Type }}" class="input-xlarge">
+      <option value="Magento" selected>Magento</option>
+      <option value="Shopify">Shopify</option>
+      <option value="Amazon">Amazon</option>
+    </select>
+  </div>
+</div>
+
+<script>
+function setSelectedIndex(s, valsearch){
+	// Loop through all the items in drop down list
+	for (i = 0; i< s.options.length; i++){ 
+		if (s.options[i].value == valsearch){
+			// Item is found. Set its property and exit
+			s.options[i].selected = true;
+			break;
+		}	
+	}
+	return;
+}
+	setSelectedIndex(document.getElementById("type"),{{ .Type }});
+</script>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="endpoint">Url</label>  
+  <div class="col-md-6">
+  <input id="endpoint" name="endpoint" value="{{ .Endpoint }}" class="form-control input-md" required="" type="text">
+  <span class="help-block">Hostname</span>  
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="username">Api User / Username</label>  
+  <div class="col-md-6">
+  <input id="username" name="username" value="{{ .Username }}" class="form-control input-md" required="" type="text">
+  <span class="help-block">Api Key or username</span>  
+  </div>
+</div>
+
+<!-- Password input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="password">Api Key / Password</label>
+  <div class="col-md-6">
+    <input id="password" name="password" value="{{ .Password }}" class="form-control input-md" required="" type="password">
+    <span class="help-block">Api Secret</span>
+  </div>
+</div>
+
+<!-- Password input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="token">Permanent Token (OAuth)</label>
+  <div class="col-md-6">
+    <input id="token" name="token" value="{{ .Token }}" class="form-control input-md" type="password">
+    <span class="help-block">OAuth Token if present</span>
+  </div>
+</div>
+
+<!-- Multiple Radios (inline) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="active">Active</label>
+  <div class="col-md-4"> 
+    <label class="radio-inline" for="active-0">
+      <input name="active" id="active-0" value="yes" type="radio" onclick="changeActive(this)" >
+      yes
+    </label> 
+    <label class="radio-inline" for="active-1">
+      <input name="active" id="active-1" value="no" type="radio" onclick="changeActive(this)">
+      no
+    </label>
+  </div>
+</div>
+
+<script>
+	function changeActive(button) {
+		document.getElementById("active").value = button.value;
+	}
+</script>
+
+<script type="text/javascript" defer="defer">
+<!-- 
+if(document.getElementById){
+if ({{ .Active }} == "yes"){
+	document.getElementById('active-0').checked = true;
+	document.getElementById('active-1').checked = false;
+} else {
+	document.getElementById('active-0').checked = false;
+	document.getElementById('active-1').checked = true;
+}
+}
+// -->
+</script>
+
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="send"></label>
+  <div class="col-md-4">
+    <button type="submit" formmethod="post" formaction="/channels" id="send" name="send" class="btn btn-primary">Save</button>
+  </div>
+  
+</div>
+</fieldset>
+</form>

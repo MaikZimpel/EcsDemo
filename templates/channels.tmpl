@@ -1,0 +1,29 @@
+<h1>Merchant Channel List</h1>
+<table class="table">
+	<tr>
+		<th></th>
+		<th>NAME</th>
+		<th>TYPE</th>
+		<th>ENDPOINT</th>
+		<th>API-USER</th>
+		<th>API-KEY</th>
+		<th>API-TOKEN</th>
+		<th>CREATED</th>
+		<th>ACTIVE</th>
+	</tr>
+	{{range .}}
+		<tr>
+			<td><a href="/channels/{{ .Code }}">Edit</a></td>
+			<td>{{ .Name  }}</td>
+			<td>{{ .Type }}</td>
+			<td>{{ .Endpoint }}</td>
+			<td>{{ .Username }}</td>
+			<td>{{ .Password }}</td>
+			<td>{{ .Token }}</td>
+			<td>{{ .CreateTimestamp }}</td>
+			<td>{{ .Active }}</td>
+		</tr>
+	{{ end }}
+</table>
+
+	

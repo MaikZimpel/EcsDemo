@@ -1,0 +1,75 @@
+<form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<h1>Magento Product View</h1>
+<legend></legend>
+
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="sku">SKU</label>
+  <div class="controls">
+    <input id="sku" name="sku" value="{{ .Sku }}" class="input-large" type="text" readonly>
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="id">ID</label>
+  <div class="controls">
+    <input id="id" name="id" value="{{ .Id }}" class="input-large" type="text" readonly>
+    
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="control-group">
+  <label class="control-label" for="name">Name</label>
+  <div class="controls">                     
+    <textarea rows="1" cols="100" id="name" name="name" readonly>{{ .Name }}</textarea>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="qty">Quantity</label>
+  <div class="controls">
+    <input id="qty" name="qty" value="{{ .Qty }}" class="input-mini" type="text" readonly>
+    <label class="control-label" onclick="javascript:inc()"> + </label> 
+	<label class="control-label" onclick="javascript:dec()"> - </label><br/>
+	<label class="control-label" onclick="javascript:rst()"> reset </label>
+	<label class="control-label" style="color:red;" onclick="javascript:adjust()"> adjust </label>
+  </div>
+</div>
+
+<div class="control-group">
+	
+</div>
+
+<script>
+	function inc() {
+		qty = document.getElementById("qty");
+		var q = parseInt(qty.value);
+		qty.value = q+1;
+	}
+	
+	function dec() {
+		qty = document.getElementById("qty");
+		qty.value -= 1;
+	}
+	
+	function rst() {
+		qty = document.getElementById("qty");
+		qty.value = {{ .Qty }};
+	}
+	
+	function adjust() {
+		qty = parseInt(document.getElementById("qty").value);
+		adjustment = qty - {{ .Qty }}
+		alert("adjust " + {{ .Sku }} + " by " + adjustment)
+	}
+</script>
+
+</fieldset>
+</form>

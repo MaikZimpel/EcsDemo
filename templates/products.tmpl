@@ -1,0 +1,20 @@
+<h1>Efinity Product List</h1>
+<table class="table">
+	<tr>
+		<th>CODE</th>
+		<th>SKU</th>
+		<th>NAME</th>
+		<th>DESCRIPTION</th>
+		<th></th>
+	</tr>
+	{{range .}}
+		<tr>
+			<td>{{ .Code  }}</td>
+			<td>{{ .Sku }}</td>
+			<td>{{ .Name }}</td>
+			<td>{{ .Description }}</td>
+			<td><a href="/products/fetch?sku={{ .Sku }}">Fetch from channel</a></td>
+		</tr>
+	{{ end }}
+	
+</table>
